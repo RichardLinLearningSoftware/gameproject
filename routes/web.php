@@ -13,6 +13,10 @@ Route::get('/game', function () {
     return view('pages.game');
 });
 
+Route::get('/user/{username}', function ($username) {
+    return view('pages.profile', compact('username'));
+});
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
