@@ -4,5 +4,5 @@
 @endsection
 
 @section('content')
-    <h2>About</h2>
+    <h2>Game match</h2>
 @endsection

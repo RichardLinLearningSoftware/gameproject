@@ -9,10 +9,21 @@
         <link rel="stylesheet" href="{{ asset('css/main.css') }}">
     </head>
     <body>
-        <header>
+        <header class="header-gap">
             <a href="/">home</a>
             <a href="/contact">contact</a>
-            <a href="/about">about</a>
+            <a href="/game">game</a>
+            @guest
+                <a href="{{ route('login') }}">Log in</a>
+                <a href="{{ route('register') }}"> Register</a>
+            @endguest
+            
+            @auth
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <button type="submit">Logout</button>
+                </form>
+            @endauth
         </header>
 
         <main class="content-body">

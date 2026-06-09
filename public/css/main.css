@@ -1,3 +1,9 @@
 .content-body{
     height: 100vh;
 }
+
+.header-gap{
+    flex-direction: row;
+    display: flex;
+    gap: 15px;
+}

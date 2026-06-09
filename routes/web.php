@@ -9,19 +9,9 @@ Route::get('/', function () {
 Route::get('/contact', function () {
     return view('pages.contact');
 });
-Route::get('/about', function () {
-    return view('pages.about');
+Route::get('/game', function () {
+    return view('pages.game');
 });
-
-Route::get('/products', function () {
-    return view('pages.product', [
-        'products' => ['Laptop', 'Mouse', 'Keyboard']
-    ]);
-});
-
-Route::view('/wow', 'pages.testPage', [
-    'isAdmin' => true
-]);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
