@@ -23,6 +23,8 @@
                     @csrf
                     <button type="submit">Logout</button>
                 </form>
+
+                <a href="/dashboard">profile</a>
             @endauth
         </header>
 
