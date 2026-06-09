@@ -1,7 +1,7 @@
 @extends('layouts.index')
 
 @section('title')
-    {{ "Login" }}
+    {{ "Register" }}
 @endsection
 
 @section('content')
