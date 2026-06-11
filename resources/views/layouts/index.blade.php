@@ -13,6 +13,7 @@
             <a href="/">home</a>
             <a href="/contact">contact</a>
             <a href="/game">game</a>
+            <a href="/players">Player list</a>
             @guest
                 <a href="{{ route('login') }}">Log in</a>
                 <a href="{{ route('register') }}"> Register</a>
@@ -23,8 +24,6 @@
                     @csrf
                     <button type="submit">Logout</button>
                 </form>
-
-                <a href="/dashboard">profile</a>
             @endauth
         </header>
 

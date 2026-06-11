@@ -1,5 +1,5 @@
 <?php
-
+use App\Http\Controllers\PlayerController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -13,9 +13,7 @@ Route::get('/game', function () {
     return view('pages.game');
 });
 
-Route::get('/user/{username}', function ($username) {
-    return view('pages.profile', compact('username'));
-});
+Route::resource('/players', PlayerController::class);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
