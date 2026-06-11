@@ -58,6 +58,9 @@ class PlayerController extends Controller
      */
     public function destroy(string $id)
     {
+        $user = User::findOrFail($id);
+        $user->delete();
+        return redirect('/players');
     }
 }
 

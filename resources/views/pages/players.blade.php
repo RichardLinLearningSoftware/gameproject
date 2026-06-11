@@ -15,6 +15,13 @@
                 <a href="{{ route('players.show', $user->id) }}">
                     View profile
                 </a>
+                <br>
+                <form method="POST" action="{{ route('players.destroy', $user->id) }}">
+                    @csrf
+                    @method('DELETE')
+
+                    <button type="submit">Delete</button>
+                </form>
             @endif
         @endforeach
     </div>
