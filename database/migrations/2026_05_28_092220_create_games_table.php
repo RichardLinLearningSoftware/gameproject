@@ -11,20 +11,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-        // Schema::create('games', function (Blueprint $table) {
-        //     $table->id();
-        //     $table->timestamps();
-        //     $table->interger("matchId");
-        //     $table->interger("player1Id");
-        //     $table->interger("player2Id");
-        //     $table->interger("player1HP");
-        //     $table->interger("player2HP");
-        //     $table->interger("round");
-        //     $table->boolean("isActive");
-        //     $table->boolean("isActive");
-        //     $table->interger("winnerId");
-            
-        // });
+        Schema::create('games', function (Blueprint $table) {
+            $table->id();
+            $table->timestamps();
+            $table->integer("matchId");
+            $table->integer("player1Id");
+            $table->integer("player2Id");
+            $table->integer("player1HP");
+            $table->integer("player2HP");
+            $table->integer("round");
+            $table->boolean("isActive");
+            $table->integer("winnerId");
+        });
     }
 
     /**
