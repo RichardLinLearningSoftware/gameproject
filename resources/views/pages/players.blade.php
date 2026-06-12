@@ -12,16 +12,10 @@
                 <h3>{{ $user->name }}</h3>
                 <p>{{ $user->email }}</p>
                 <p>{{ $user->id }}</p>
-                <a href="{{ route('players.show', $user->id) }}">
+                <a href="{{ route('players.show', $user->name) }}">
                     View profile
                 </a>
-                <br>
-                <form method="POST" action="{{ route('players.destroy', $user->id) }}">
-                    @csrf
-                    @method('DELETE')
-
-                    <button type="submit">Delete</button>
-                </form>
+                
             @endif
         @endforeach
     </div>
