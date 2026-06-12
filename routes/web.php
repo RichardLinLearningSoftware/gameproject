@@ -14,9 +14,9 @@ Route::get('/game', function () {
     return view('pages.game');
 });
 
-Route::resource('/players', PlayerController::class);
+Route::get('/players', PlayerController::class);
 
-Route::resource('/game', GameController::class);
+Route::get('/game', GameController::class);
 
 Route::get('/dashboard', function () {
     return view('dashboard');

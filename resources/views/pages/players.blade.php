@@ -15,7 +15,6 @@
                 <a href="{{ route('players.show', $user->name) }}">
                     View profile
                 </a>
-                
             @endif
         @endforeach
     </div>

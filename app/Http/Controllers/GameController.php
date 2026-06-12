@@ -13,7 +13,7 @@ class GameController extends Controller
      */
     public function index()
     {
-    
+        return('pages.game');
     }
 
     /**
@@ -33,9 +33,8 @@ class GameController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $name)
+    public function show(string $id)
     {
-
     }
 
     /**
