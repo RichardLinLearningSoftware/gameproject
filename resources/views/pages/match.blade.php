@@ -2,7 +2,6 @@
 @section('title')
     {{ "Game" }}
 @endsection
-
 @section('content')
     <h2>Game match</h2>
     @guest
@@ -10,14 +9,24 @@
     @endguest
     @auth
         <h2>Game id: {{$game->id}}</h2>
-        <h3>Player one: {{$game->player1Id}}</h3>
-        <h3>Player two: {{$game->player2Id}}</h3>
+        @foreach ($users as $user)
+            @if($user->id == $game->player1Id)
+                <h3>player 1: {{ $user->name }}</h3>
+            @endif
+        @endforeach
+        @foreach ($users as $user)
+            @if($user->id == $game->player2Id)
+                <h3>player 2: {{ $user->name }}</h3>
+            @endif
+        @endforeach
+
+        <h3>Winner is: {{ $game->winner }}</h3>
+
         @if($game->isActive)
-            <p>is active: true</p>
+            <p>game is active: true</p>
         @else
-            <p>is active: false</p>
+            <p>game is active: false</p>
         @endif
-        <p>Winner: {{ $game->winnerId }}</p>
         <p>Player one choice: {{ $game->player1Choice }}</p>
         <p>player two choice: {{ $game->player2Choice }}</p>
 

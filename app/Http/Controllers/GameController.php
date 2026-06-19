@@ -35,8 +35,7 @@ class GameController extends Controller
         $game = Game::create([
             'player1Id' => auth()->id(),
             'player2Id' => $request->player2Id,
-            'isActive' => true,
-            'winnerId' => 0,
+            'isActive' => true
         ]);
 
         User::findOrFail(auth()->id())->update([
@@ -54,8 +53,9 @@ class GameController extends Controller
      */
     public function show(string $id)
     {
+        $users = User::all();
         $game = Game::find($id);
-        return view ("pages.match", compact("game"));
+        return view ("pages.match", compact("game", "users"));
     }
 
     /**
@@ -91,35 +91,40 @@ class GameController extends Controller
         $game = Game::find($id);
         $choice1 = $game->player1Choice;
         $choice2 = $game->player2Choice;
+        $player1 = User::find($game->player1Id);
+        $player2 = User::find($game->player2Id);
 
         if($choice1 != "none" && $choice2 != "none"){
-            if($choice1 != $choice2){
-                if($choice1 == "rock" && $choice2 == "scicors"){
-                    Game::findOrFail($id)->update([
-                        'winnerId' => $game->player1Id,
-                    ]);
-                }elseif($choice1 == "rock" && $choice2 == "paper"){
-                    Game::findOrFail($id)->update([
-                        'winnerId' => $game->player2Id,
-                    ]);
-                }elseif($choice1 == "scicors" && $choice2 == "paper"){
-                    Game::findOrFail($id)->update([
-                        'winnerId' => $game->player1Id,
-                    ]);
-                }elseif($choice1 == "scicors" && $choice2 == "rock"){
-                    Game::findOrFail($id)->update([
-                        'winnerId' => $game->player2Id,
-                    ]);
-                }elseif($choice1 == "paper" && $choice2 == "rock"){
-                    Game::findOrFail($id)->update([
-                        'winnerId' => $game->player1Id,
-                    ]);
-                }elseif($choice1 == "rock" && $choice2 == "scicors"){
-                    Game::findOrFail($id)->update([
-                        'winnerId' => $game->player2Id,
-                    ]);
-                }
+            if($choice1 == $choice2){
+                Game::findOrFail($id)->update([
+                    'winner' => "Tie",
+                ]);
+            }elseif($choice1 == "rock" && $choice2 == "scicors"){
+                Game::findOrFail($id)->update([
+                    'winner' => $player1->name,
+                ]);
+            }elseif($choice1 == "rock" && $choice2 == "paper"){
+                Game::findOrFail($id)->update([
+                    'winner' => $player2->name,
+                ]);
+            }elseif($choice1 == "scicors" && $choice2 == "paper"){
+                Game::findOrFail($id)->update([
+                    'winner' => $player1->name,
+                ]);
+            }elseif($choice1 == "scicors" && $choice2 == "rock"){
+                Game::findOrFail($id)->update([
+                    'winner' => $player2->name,
+                ]);
+            }elseif($choice1 == "paper" && $choice2 == "rock"){
+                Game::findOrFail($id)->update([
+                    'winner' => $player1->name,
+                ]);
+            }elseif($choice1 == "paper" && $choice2 == "scicors"){
+                Game::findOrFail($id)->update([
+                    'winner' => $player2->name,
+                ]);
             }
+
             Game::findOrFail($id)->update([
                 'isActive' => false
             ]);

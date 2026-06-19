@@ -12,6 +12,6 @@ class Game extends Model
         'player1Choice',
         'player2Choice',
         'isActive',
-        'winnerId',
+        'winner',
     ];
 }
