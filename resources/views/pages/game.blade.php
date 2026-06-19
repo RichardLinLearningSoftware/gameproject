@@ -14,8 +14,20 @@
                 View current match
             </a>
         @else
-            You arent in a match
-            <a href="/players">Invite a player</a>
+            <h2>You arent in a match</h2>
+            <form action="{{ route('game.store') }}" method="POST">
+                @csrf
+                <select name="player2Id" required>
+                    @foreach ( $users as $user )
+                        @if($user->id != Auth::id())
+                            <option value={{$user->id}}>
+                                {{$user->name}}
+                            </option>
+                        @endif
+                    @endforeach
+                </select>
+                <input type="submit" value="Invite">
+            </form>
         @endif
     @endauth
 @endsection

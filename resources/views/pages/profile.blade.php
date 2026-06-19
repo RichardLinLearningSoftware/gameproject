@@ -9,6 +9,6 @@
         <h1>{{ $user->name }}</h1>
         <p>{{ $user->email }}</p>
         <p>{{ $user->id }}</p>
-        <h3>Current match: {{ Auth::user()->currentMatch }}</h3>
+        <h3>Current match: {{ $user->currentMatch }}</h3>
     </div>
 @endsection

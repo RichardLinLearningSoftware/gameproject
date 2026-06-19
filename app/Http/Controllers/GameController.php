@@ -13,7 +13,6 @@ class GameController extends Controller
      */
     public function index()
     {
-        return('pages.game');
     }
 
     /**
@@ -21,6 +20,8 @@ class GameController extends Controller
      */
     public function create()
     {
+        $users = User::all();
+        return view ('pages.game', compact('users'));
     }
 
     /**
@@ -28,6 +29,25 @@ class GameController extends Controller
      */
     public function store(Request $request)
     {   
+        $request->validate([
+            'player2Id' => 'required|exists:users,id',
+        ]);
+        $game = Game::create([
+            'player1Id' => auth()->id(),
+            'player2Id' => $request->player2Id,
+            'round' => 1,
+            'isActive' => true,
+            'winnerId' => 0,
+        ]);
+
+        User::findOrFail(auth()->id())->update([
+            'currentMatch' => $game->id,
+        ]);
+        User::findOrFail($request->player2Id)->update([
+            'currentMatch' => $game->id,
+        ]);
+
+        return redirect("/game/{$game->id}");
     }
 
     /**
@@ -35,6 +55,8 @@ class GameController extends Controller
      */
     public function show(string $id)
     {
+        $game = Game::find($id);
+        return view ("pages.match", compact("game"));
     }
 
     /**

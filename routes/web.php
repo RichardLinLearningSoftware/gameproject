@@ -10,13 +10,10 @@ Route::get('/', function () {
 Route::get('/contact', function () {
     return view('pages.contact');
 });
-Route::get('/game', function () {
-    return view('pages.game');
-});
 
-Route::get('/players', PlayerController::class);
+Route::resource('players', PlayerController::class);
 
-Route::get('/game', GameController::class);
+Route::resource('/game', GameController::class);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
