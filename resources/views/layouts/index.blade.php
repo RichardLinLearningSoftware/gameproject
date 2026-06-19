@@ -12,11 +12,13 @@
         <header class="header-gap">
             <a href="/">home</a>
             <a href="/contact">contact</a>
-            @if (Auth::id() == 0)
-                <a href="{{ route('game.create')}}">game</a>
-            @else
-                <a href="{{ route('game.show', Auth::user()->currentMatch) }}">game</a>
-            @endif
+            @auth
+                @if (Auth::user()->currentMatch == 0)
+                    <a href="{{ route('game.create')}}">game</a>
+                @else
+                    <a href="{{ route('game.show', Auth::user()->currentMatch) }}">game</a>
+                @endif
+            @endauth
             <a href="/players">Player list</a>
             @guest
                 <a href="{{ route('login') }}">Log in</a>
